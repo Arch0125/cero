@@ -11,16 +11,16 @@ import {
   } from '@chakra-ui/react'
   import { InfoOutlineIcon } from '@chakra-ui/icons';
 
-const Maticborrow = () => {
+const Wethborrow = () => {
 
     const[ratio,setRatio]=useState(0);
     const[apr,setApr]=useState(0);
 
     return ( 
         <div className=' flex flex-col w-[100%] h-[100%] bg-[#1a0636] p-[15px] rounded-2xl ' >
-            <p className='font-thin text-gray-400 '   >Borrow USDC to buy MATIC</p>
+            <p className='font-thin text-gray-400 '   >Borrow USDC to buy WETH</p>
             <InputGroup>
-            <InputLeftElement pr={"2"} ><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[25px] mt-[40px] ml-3 ' /></InputLeftElement>
+            <InputLeftElement pr={"2"} ><img src='https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022' className='w-[15px] mt-[40px] ml-3 ' /></InputLeftElement>
             <Input placeholder='0.0' color={"gray.600"} mt={'5'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
@@ -55,4 +55,4 @@ const Maticborrow = () => {
      );
 }
  
-export default Maticborrow;
+export default Wethborrow;
