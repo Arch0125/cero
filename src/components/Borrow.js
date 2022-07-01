@@ -9,8 +9,8 @@ const Borrow = () => {
             <p className='text-white font-bold ' >Select Pool</p>
             <Tabs mt={"20px"} variant='solid-rounded'   width={"100%"}>
             <TabList  >
-                <Tab _selected={{bg:"#1a0636"}} width={"50%"} ><img src='https://svgshare.com/i/iis.svg' width={"40px"} className='mr-3' />MATIC-USDC</Tab>
-                <Tab _selected={{bg:"#1a0636"}} width={"50%"} ><img src='https://svgshare.com/i/iiV.svg' width={"40px"} className='mr-3' />WETH-USDC</Tab>
+                <Tab _selected={{bg:"#1a0636", color:'white'}} width={"50%"} ><img src='https://svgshare.com/i/iis.svg' width={"40px"} className='mr-3' />MATIC-USDC</Tab>
+                <Tab _selected={{bg:"#1a0636", color:'white'}} width={"50%"} ><img src='https://svgshare.com/i/iiV.svg' width={"40px"} className='mr-3' />WETH-USDC</Tab>
             </TabList>
             <TabPanels>
                 <TabPanel>
