@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@rainbow-me/rainbowkit/styles.css';
+import { ChakraProvider } from '@chakra-ui/react';
 import {
   getDefaultWallets,
   RainbowKitProvider,
+  darkTheme,midnightTheme
 } from '@rainbow-me/rainbowkit';
 import {
   chain,
@@ -16,6 +18,7 @@ import {
 } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import Navbar from './components/Navbar';
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.ropsten, chain.polygonMumbai],
   [
@@ -39,8 +42,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider chains={chains} theme={midnightTheme()} >
+        <ChakraProvider>
+        <Navbar/>
     <App />
+    </ChakraProvider>
     </RainbowKitProvider>
     </WagmiConfig>
   </React.StrictMode>
