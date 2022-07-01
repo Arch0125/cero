@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import Maticborrow from '../onchain/Maticborrow';
 
 const Borrow = () => {
     return ( 
@@ -12,7 +13,7 @@ const Borrow = () => {
             </TabList>
             <TabPanels>
                 <TabPanel>
-                <p>one!</p>
+                    <Maticborrow/>
                 </TabPanel>
                 <TabPanel>
                 <p>two!</p>
