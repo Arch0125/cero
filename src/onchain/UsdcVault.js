@@ -17,7 +17,7 @@ const UsdcVault = () => {
                 <InputGroup>
                 <InputLeftElement><img src='https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=022' className='w-[20px]' /></InputLeftElement>
                 <Input className='text-gray-400' />
-                <InputRightAddon className='text-white cursor-pointer' >Deposit</InputRightAddon>
+                <InputRightAddon className='text-white cursor-pointer bg-purple-800' >Deposit</InputRightAddon>
                 </InputGroup>
             </div>
         </div>
