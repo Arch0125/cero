@@ -3,18 +3,21 @@ import React, { useState } from 'react';
 import GetAccount from '../hooks/GetAccount';
 import GetUSDCVault from '../hooks/GetUSDCVault';
 import { decimals } from '../components/constants';
+import GetUSDC from '../hooks/GetUSDC'
 
 const UsdcVault = () => {
 
     const usdcvault = GetUSDCVault();
+    const usdc =  GetUSDC();
     const[bal,setBal]=useState('');
     const[totalSupply,setTotalSupply]=useState('')
     const[deposit,setDeposit]=useState('');
     var addr = GetAccount();
     addr = addr.toString();
 
-    const depositTo=async()=>{
-        await usdcvault.deposit('1000000000000000000000').then(console.log);
+    const depositTo=async(deposit)=>{
+        await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
+        await usdcvault.deposit((deposit*decimals).toString()).then(console.log);
     }
 
     const getBalance=async()=>{
@@ -44,7 +47,7 @@ const UsdcVault = () => {
                 <InputGroup>
                 <InputLeftElement><img src='https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=022' className='w-[20px]' /></InputLeftElement>
                 <Input onChange={e=>setDeposit(e.target.value)} className='text-gray-400' borderColor={'purple.900'}/>
-                <InputRightAddon className='text-white cursor-pointer' bg={'purple.900'} border={'none'} onClick={()=>depositTo()} >Deposit</InputRightAddon>
+                <InputRightAddon className='text-white cursor-pointer' bg={'purple.900'} border={'none'} onClick={()=>depositTo(deposit)} >Deposit</InputRightAddon>
                 </InputGroup>
             </div>
         </div>
