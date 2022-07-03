@@ -3,6 +3,7 @@ import './App.css';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import Borrow from './components/Borrow';
 import Vault from './components/Vault';
+import GetAccount from './hooks/GetAccount';
 
 function App() {
   return (
