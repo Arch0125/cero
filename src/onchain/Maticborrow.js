@@ -7,7 +7,8 @@ import {
     SliderThumb,
     SliderMark,
     Box,
-    Divider
+    Divider,
+    Button
   } from '@chakra-ui/react'
   import { InfoOutlineIcon } from '@chakra-ui/icons';
 
@@ -21,7 +22,7 @@ const Maticborrow = () => {
             <p className='font-thin text-gray-400 '   >Borrow USDC to buy MATIC</p>
             <InputGroup>
             <InputLeftElement pr={"2"} ><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[25px] mt-[40px] ml-3 ' /></InputLeftElement>
-            <Input placeholder='0.0' color={"gray.600"} mt={'5'} rounded={'2xl'} />
+            <Input placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
                 <label>Current Price</label>
@@ -49,6 +50,7 @@ const Maticborrow = () => {
                     <p className='font-thin'>$0.0</p>
                 </div>
             </div>
+            <Button mt={5} >Confirm Transaction</Button>
             <Divider mt={3} />
             <label className= ' font-light text-gray-500 text-[15px] mt-2' ><InfoOutlineIcon w={3} mr={2} color={'gray.500'} />Lower the collateral, higher the APR</label>
         </div>
