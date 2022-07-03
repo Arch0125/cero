@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import Borrow from './components/Borrow';
+import Vault from './components/Vault';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Tabs variant={'solid-rounded'} colorScheme='purple' width={"40%"}align={'center'} >
         <TabList>
           <Tab>Borrow</Tab>
-          <Tab>Lend</Tab>
+          <Tab>Vault</Tab>
           <Tab>Swap</Tab>
           <Tab>Portfolio</Tab>
         </TabList>
@@ -18,7 +19,7 @@ function App() {
             <Borrow/>
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <Vault/>
           </TabPanel>
           <TabPanel>
             <p>one!</p>
