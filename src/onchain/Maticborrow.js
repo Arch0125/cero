@@ -50,7 +50,7 @@ const Maticborrow = () => {
                     <p className='font-thin'>$0.0</p>
                 </div>
             </div>
-            <Button mt={5} bgColor={'purple.900'} textColor={'white'} >Confirm Transaction</Button>
+            <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} >Confirm Transaction</Button>
             <Divider mt={3} />
             <label className= ' font-light text-gray-500 text-[15px] mt-2' ><InfoOutlineIcon w={3} mr={2} color={'gray.500'} />Lower the collateral, higher the APR</label>
         </div>
