@@ -5,7 +5,7 @@ function GetUSDC() {
   const provider = useProvider()
   const{data:signer}=useSigner();
   const contract = useContract({
-    addressOrName: '0xF74C572A86029553B9f90c90B9C2699b0dC51687',
+    addressOrName: '0xE923CD10386C0e196fb9EcA75F2A3994d46794b1',
     contractInterface: USDCABI,
     signerOrProvider: signer,
   })
