@@ -16,8 +16,8 @@ const MaticVault = () => {
             <div className='flex flex-row justify-between px-2 mt-3 ' >
                 <InputGroup>
                 <InputLeftElement><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[20px]' /></InputLeftElement>
-                <Input className='text-gray-400' />
-                <InputRightAddon className='text-white cursor-pointer bg-purple-800' >Deposit</InputRightAddon>
+                <Input className='text-gray-400' borderColor={'purple.900'} />
+                <InputRightAddon className='text-white cursor-pointer' bg={"purple.900"} >Deposit</InputRightAddon>
                 </InputGroup>
             </div>
         </div>

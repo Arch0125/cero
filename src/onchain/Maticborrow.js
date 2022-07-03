@@ -30,9 +30,9 @@ const Maticborrow = () => {
             </div>
             <p className='font-thin text-gray-400 mt-2 '>Adjust Collateral</p>
             <Slider defaultValue={50} min={0} max={100} step={5} mt={2} onChange={(val)=>{setRatio(val);setApr(25/(val+5))}} >
-            <SliderTrack bg='purple.400'>
+            <SliderTrack bg='purple.800'>
                 <Box position='relative' right={10} />
-                <SliderFilledTrack bg='purple.800' />
+                <SliderFilledTrack bg='purple.400' />
             </SliderTrack>
             <SliderThumb boxSize={3} />
             </Slider>
@@ -50,7 +50,7 @@ const Maticborrow = () => {
                     <p className='font-thin'>$0.0</p>
                 </div>
             </div>
-            <Button mt={5} >Confirm Transaction</Button>
+            <Button mt={5} bgColor={'purple.900'} textColor={'white'} >Confirm Transaction</Button>
             <Divider mt={3} />
             <label className= ' font-light text-gray-500 text-[15px] mt-2' ><InfoOutlineIcon w={3} mr={2} color={'gray.500'} />Lower the collateral, higher the APR</label>
         </div>
