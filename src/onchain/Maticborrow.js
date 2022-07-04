@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input, InputLeftElement, InputGroup } from '@chakra-ui/react';
+import { decimals } from '../components/constants';
 import {
     Slider,
     SliderTrack,
@@ -11,8 +12,18 @@ import {
     Button
   } from '@chakra-ui/react'
   import { InfoOutlineIcon } from '@chakra-ui/icons';
+import GetUSDC from '../hooks/GetUSDC';
+import GetUSDCVault from '../hooks/GetUSDCVault';
 
 const Maticborrow = () => {
+
+    useEffect(()=>{
+        setColl(borrow*ratio/100);
+        setRepay(borrow-coll)
+    })
+
+    const usdc = GetUSDC();
+    const usdcvault = GetUSDCVault();
 
     const[matic,setMatic]=useState(0);
     const[borrow,setBorrow]=useState(0);
@@ -20,6 +31,11 @@ const Maticborrow = () => {
     const[apr,setApr]=useState(0);
     const[coll,setColl]=useState(0);
     const[repay,setRepay]=useState(0);
+
+    const depositTo=async(deposit)=>{
+        await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
+        await usdcvault.deposit((deposit*decimals).toString()).then(console.log);
+    }
 
     return ( 
         <div className=' flex flex-col w-[100%] h-[100%] bg-[#1a0636] p-[15px] rounded-2xl ' >
@@ -33,7 +49,7 @@ const Maticborrow = () => {
                 <label>Borrow Amount : {borrow}</label>
             </div>
             <p className='font-thin text-gray-400 mt-2 '>Adjust Collateral</p>
-            <Slider defaultValue={50} min={0} max={100} step={5} mt={2} onChange={(val)=>{setRatio(val);setApr(25/(val+5));setColl(borrow*(ratio/100));setRepay(borrow*(1-ratio/100))}} >
+            <Slider defaultValue={50} min={0} max={100} step={5} mt={2} onChange={(val)=>{setRatio(val);setApr(25/(val+5))}}  >
             <SliderTrack bg='purple.800'>
                 <Box position='relative' right={10} />
                 <SliderFilledTrack bg='purple.400' />
@@ -54,7 +70,7 @@ const Maticborrow = () => {
                     <p className='font-thin'>${repay}</p>
                 </div>
             </div>
-            <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} >Confirm Transaction</Button>
+            <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>depositTo(coll)} >Confirm Transaction</Button>
             <Divider mt={3} />
             <label className= ' font-light text-gray-500 text-[15px] mt-2' ><InfoOutlineIcon w={3} mr={2} color={'gray.500'} />Lower the collateral, higher the APR</label>
         </div>
