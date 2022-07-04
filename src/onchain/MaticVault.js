@@ -1,7 +1,26 @@
 import { Divider, Input, InputGroup, InputLeftElement, InputRightAddon } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import GetUSDCVault from '../hooks/GetMATICVault';
+import GetWMATIC from '../hooks/GetWMATIC';
+import { decimals } from '../components/constants';
 
 const MaticVault = () => {
+
+    const wmatic = GetWMATIC();
+    const wmaticvault=GetUSDCVault();
+    const[totalSupply,setTotalSupply]=useState('');
+
+    useEffect(()=>{
+        getBalance();
+    })
+
+    const getBalance=async()=>{
+        var tSupply = await wmaticvault.totalSupply();
+        tSupply = (tSupply/decimals).toString();
+        setTotalSupply(tSupply);
+    }
+
+
     return ( 
         <div className=' flex flex-col w-[100%] h-[100%] bg-[rgb(26,6,54)] p-[15px] rounded-2xl ' >
             <div className='flex flex-row justify-between px-2' >
@@ -9,17 +28,11 @@ const MaticVault = () => {
                 <label className='text-white font-bold ' >TVL : </label>
             </div>
             <div className='flex flex-row justify-between px-2 mt-2 mb-3' >
-                <label className='text-white  ' >Total Supply : </label>
-                <label className='text-white  ' >Your Supply : </label>
+                <label className='text-white  ' >Total Supply : {totalSupply}</label>
+                
             </div>
             <Divider/>
-            <div className='flex flex-row justify-between px-2 mt-3 ' >
-                <InputGroup>
-                <InputLeftElement><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[20px]' /></InputLeftElement>
-                <Input className='text-gray-400' borderColor={'purple.900'} />
-                <InputRightAddon className='text-white cursor-pointer' bg={"purple.900"} border={'none'} >Deposit</InputRightAddon>
-                </InputGroup>
-            </div>
+            <label className='text-white  ' >Your Locked Assets : </label>
         </div>
      );
 }
