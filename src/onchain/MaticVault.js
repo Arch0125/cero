@@ -30,11 +30,11 @@ const MaticVault = () => {
                 <label className='text-white font-bold ' >TVL : $ {tvl}</label>
             </div>
             <div className='flex flex-row justify-between px-2 mt-2 mb-3' >
-                <label className='text-white  ' >Total Supply : 10 MATIC{totalSupply} MATIC</label>
+                <label className='text-white  ' >Total Supply : {totalSupply} MATIC</label>
                 
             </div>
             <Divider/>
-            <label className='text-white  ' >Your Locked Assets : </label>
+            <label className='text-white  ' >Your Locked Assets : 10 MATIC</label>
         </div>
      );
 }
