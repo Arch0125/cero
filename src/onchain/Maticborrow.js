@@ -18,6 +18,8 @@ import GetOracle from '../hooks/GetOracle';
 
 const Maticborrow = () => {
 
+    const BigNumber = require('bignumber.js');
+
     useEffect(()=>{
         setColl(borrow*ratio/100);
         setRepay(borrow-coll);
@@ -42,11 +44,10 @@ const Maticborrow = () => {
     }
 
     const getOracle=async()=>{
-        var res = await oracle.estimateAmountOut('0xaa2ABC23B36E906cE603C6d19A88F0873A701b87',matic,1);
-        res = res.toString();
-        setCurrentprice(res);
-        console.log(res);
-
+        var big = new BigNumber(1).shiftedBy(18).toString();
+        var res = await oracle.estimateAmountOut('0xaa2ABC23B36E906cE603C6d19A88F0873A701b87',big,10);
+        let x = new BigNumber(`${res}`).shiftedBy(-18).toFixed(5);
+        setCurrentprice(x);
     }
 
     return ( 
@@ -54,10 +55,10 @@ const Maticborrow = () => {
             <p className='font-thin text-gray-400 '   >Borrow USDC to buy MATIC</p>
             <InputGroup>
             <InputLeftElement pr={"2"} ><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[25px] mt-[40px] ml-3 ' /></InputLeftElement>
-            <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * 0.45 * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
+            <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * currentprice * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
-                <label>Current Price : </label>
+                <label>Current Price : {currentprice}</label>
                 <label>Borrow Amount : {borrow}</label>
             </div>
             <p className='font-thin text-gray-400 mt-2 '>Adjust Collateral</p>
