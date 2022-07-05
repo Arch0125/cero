@@ -14,7 +14,6 @@ import {
   import { InfoOutlineIcon } from '@chakra-ui/icons';
 import GetUSDC from '../hooks/GetUSDC';
 import GetUSDCVault from '../hooks/GetUSDCVault';
-import GetOracle from '../hooks/GetOracle';
 
 const Maticborrow = () => {
 
@@ -23,12 +22,10 @@ const Maticborrow = () => {
     useEffect(()=>{
         setColl(borrow*ratio/100);
         setRepay(borrow-coll);
-        //getOracle();
     })
 
     const usdc = GetUSDC();
     const usdcvault = GetUSDCVault();
-    const oracle = GetOracle();
 
     const[matic,setMatic]=useState(0);
     const[borrow,setBorrow]=useState(0);
@@ -41,13 +38,6 @@ const Maticborrow = () => {
     const depositTo=async(deposit)=>{
         await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
         await usdcvault.deposit((deposit*decimals).toString()).then(console.log);
-    }
-
-    const getOracle=async()=>{
-        var big = new BigNumber(1).shiftedBy(18).toString();
-        var res = await oracle.estimateAmountOut('0xaa2ABC23B36E906cE603C6d19A88F0873A701b87',big,10);
-        let x = new BigNumber(`${res}`).shiftedBy(-18).toFixed(5);
-        setCurrentprice(x);
     }
 
     return ( 
