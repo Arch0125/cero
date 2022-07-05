@@ -20,7 +20,7 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import Navbar from './components/Navbar';
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.ropsten, chain.polygonMumbai],
+  [chain.polygonMumbai, chain.polygon, chain.mainnet,  chain.ropsten],
   [
     alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }),
     publicProvider()
