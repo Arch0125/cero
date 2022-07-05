@@ -58,8 +58,8 @@ const Maticborrow = () => {
             <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * currentprice * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
-                <label>Current Price : {currentprice}</label>
-                <label>Borrow Amount : {borrow}</label>
+                <label>Current Price :  USDC</label>
+                <label>Borrow Amount : </label>
             </div>
             <p className='font-thin text-gray-400 mt-2 '>Adjust Collateral</p>
             <Slider defaultValue={50} min={0} max={100} step={5} mt={2} onChange={(val)=>{setRatio(val);setApr(25/(val+5))}}  >
@@ -76,11 +76,11 @@ const Maticborrow = () => {
             <div className='flex flex-row w-[100%] mt-4 text-gray-500' >
                 <div className='flex flex-col w-[50%]' >
                     <p>Collateral</p>
-                    <p  className='font-thin'>${coll}</p>
+                    <p  className='font-thin'>{coll} USDC</p>
                 </div>
                 <div className='flex flex-col w-[50%]' >
                     <p>Borrow</p>
-                    <p className='font-thin'>${repay}</p>
+                    <p className='font-thin'>{repay} USDC</p>
                 </div>
             </div>
             <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>depositTo(coll)} >Confirm Transaction</Button>
