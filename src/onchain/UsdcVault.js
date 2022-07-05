@@ -17,7 +17,6 @@ const UsdcVault = () => {
     const[totalSupply,setTotalSupply]=useState('')
     const[deposit,setDeposit]=useState('');
     var addr = GetAccount();
-    addr = addr.toString();
 
     const depositTo=async(deposit)=>{
         await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
@@ -25,7 +24,7 @@ const UsdcVault = () => {
     }
 
     const getBalance=async()=>{
-        const bigno = await usdcvault.balanceOf(addr);
+        const bigno = await usdcvault.balanceOf(`${addr}`);
         var tSupply = await usdcvault.totalSupply();
         tSupply=tSupply.toString() /decimals;
         var res = bigno.toString();

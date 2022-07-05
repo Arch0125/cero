@@ -71,7 +71,7 @@ const Maticborrow = () => {
             </Slider>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
                 <label>Collateral : {ratio} %</label>
-                <label>APR : {(apr).toString().substring(0,4)} %</label>
+                <label>APR : {(apr)} %</label>
             </div>
             <div className='flex flex-row w-[100%] mt-4 text-gray-500' >
                 <div className='flex flex-col w-[50%]' >
