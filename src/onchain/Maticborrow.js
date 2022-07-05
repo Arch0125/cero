@@ -14,16 +14,19 @@ import {
   import { InfoOutlineIcon } from '@chakra-ui/icons';
 import GetUSDC from '../hooks/GetUSDC';
 import GetUSDCVault from '../hooks/GetUSDCVault';
+import GetOracle from '../hooks/GetOracle';
 
 const Maticborrow = () => {
 
     useEffect(()=>{
         setColl(borrow*ratio/100);
-        setRepay(borrow-coll)
+        setRepay(borrow-coll);
+        getOracle();
     })
 
     const usdc = GetUSDC();
     const usdcvault = GetUSDCVault();
+    const oracle = GetOracle();
 
     const[matic,setMatic]=useState(0);
     const[borrow,setBorrow]=useState(0);
@@ -31,10 +34,19 @@ const Maticborrow = () => {
     const[apr,setApr]=useState(0);
     const[coll,setColl]=useState(0);
     const[repay,setRepay]=useState(0);
+    const[currentprice,setCurrentprice]=useState(0);
 
     const depositTo=async(deposit)=>{
         await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
         await usdcvault.deposit((deposit*decimals).toString()).then(console.log);
+    }
+
+    const getOracle=async()=>{
+        var res = await oracle.estimateAmountOut('0xaa2ABC23B36E906cE603C6d19A88F0873A701b87',matic,1);
+        res = res.toString();
+        setCurrentprice(res);
+        console.log(res);
+
     }
 
     return ( 
@@ -45,7 +57,7 @@ const Maticborrow = () => {
             <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * 0.45 * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
-                <label>Current Price : $0.45</label>
+                <label>Current Price : </label>
                 <label>Borrow Amount : {borrow}</label>
             </div>
             <p className='font-thin text-gray-400 mt-2 '>Adjust Collateral</p>
