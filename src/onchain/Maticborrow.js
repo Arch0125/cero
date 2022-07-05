@@ -23,7 +23,7 @@ const Maticborrow = () => {
     useEffect(()=>{
         setColl(borrow*ratio/100);
         setRepay(borrow-coll);
-        getOracle();
+        //getOracle();
     })
 
     const usdc = GetUSDC();
