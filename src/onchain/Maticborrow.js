@@ -14,16 +14,21 @@ import {
   import { InfoOutlineIcon } from '@chakra-ui/icons';
 import GetUSDC from '../hooks/GetUSDC';
 import GetUSDCVault from '../hooks/GetUSDCVault';
+import GetOracle from '../hooks/GetOracle';
 
 const Maticborrow = () => {
 
+    const BigNumber = require('bignumber.js');
+
     useEffect(()=>{
         setColl(borrow*ratio/100);
-        setRepay(borrow-coll)
+        setRepay(borrow-coll);
+        getOracle();
     })
 
     const usdc = GetUSDC();
     const usdcvault = GetUSDCVault();
+    const oracle = GetOracle();
 
     const[matic,setMatic]=useState(0);
     const[borrow,setBorrow]=useState(0);
@@ -31,10 +36,18 @@ const Maticborrow = () => {
     const[apr,setApr]=useState(0);
     const[coll,setColl]=useState(0);
     const[repay,setRepay]=useState(0);
+    const[currentprice,setCurrentprice]=useState(0);
 
     const depositTo=async(deposit)=>{
         await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
         await usdcvault.deposit((deposit*decimals).toString()).then(console.log);
+    }
+
+    const getOracle=async()=>{
+        var big = new BigNumber(1).shiftedBy(18).toString();
+        var res = await oracle.estimateAmountOut('0xaa2ABC23B36E906cE603C6d19A88F0873A701b87',big,10);
+        let x = new BigNumber(`${res}`).shiftedBy(-18).toFixed(5);
+        setCurrentprice(x);
     }
 
     return ( 
@@ -42,10 +55,10 @@ const Maticborrow = () => {
             <p className='font-thin text-gray-400 '   >Borrow USDC to buy MATIC</p>
             <InputGroup>
             <InputLeftElement pr={"2"} ><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[25px] mt-[40px] ml-3 ' /></InputLeftElement>
-            <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * 0.45 * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
+            <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * currentprice * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
-                <label>Current Price : $0.45</label>
+                <label>Current Price : {currentprice} USDC</label>
                 <label>Borrow Amount : {borrow}</label>
             </div>
             <p className='font-thin text-gray-400 mt-2 '>Adjust Collateral</p>
@@ -63,11 +76,11 @@ const Maticborrow = () => {
             <div className='flex flex-row w-[100%] mt-4 text-gray-500' >
                 <div className='flex flex-col w-[50%]' >
                     <p>Collateral</p>
-                    <p  className='font-thin'>${coll}</p>
+                    <p  className='font-thin'>{coll} USDC</p>
                 </div>
                 <div className='flex flex-col w-[50%]' >
                     <p>Borrow</p>
-                    <p className='font-thin'>${repay}</p>
+                    <p className='font-thin'>{repay} USDC</p>
                 </div>
             </div>
             <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>depositTo(coll)} >Confirm Transaction</Button>
