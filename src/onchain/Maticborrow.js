@@ -55,7 +55,7 @@ const Maticborrow = () => {
             <p className='font-thin text-gray-400 '   >Borrow USDC to buy MATIC</p>
             <InputGroup>
             <InputLeftElement pr={"2"} ><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='w-[25px] mt-[40px] ml-3 ' /></InputLeftElement>
-            <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * currentprice * 1.03)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
+            <Input onChange={e=>{setMatic(e.target.value);setBorrow(e.target.value * currentprice)}} placeholder='0.0' color={"gray.600"} mt={'5'} borderColor={'purple.900'} rounded={'2xl'} />
             </InputGroup>
             <div className='flex flex-row w-[100%] justify-between px-2 font-light mt-2 text-gray-500' >
                 <label>Current Price : {currentprice} USDC</label>
