@@ -5,6 +5,7 @@ import Borrow from './components/Borrow';
 import Vault from './components/Vault';
 import GetAccount from './hooks/GetAccount';
 import GetUSDC from './hooks/GetUSDC';
+import Portfolio from './components/Portfolio';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
   showBal();
 
   return (
-    <div className='flex flex-col pt-[5%] items-center w-[100vw] h-[100vh] bg-gradient-to-b from-[#1a0636] to-[#060424] ' >
+    <div className='flex flex-col pt-[5%] items-center w-[100%] min-h-screen max-h-fit bg-gradient-to-b from-[#1a0636] to-[#060424] ' >
       <Tabs variant={'solid-rounded'} colorScheme='purple' width={"40%"}align={'center'} >
         <TabList>
           <Tab>Borrow</Tab>
@@ -37,7 +38,7 @@ function App() {
             <p>one!</p>
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <Portfolio/>
           </TabPanel>
         </TabPanels>
       </Tabs>
