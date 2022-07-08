@@ -11,7 +11,7 @@ import GetLoanDetails from '../hooks/GetLoanDetails';
 
     useEffect(()=>{
         getDetails();
-    },[])
+    })
 
     const[lockedasset,setLockedasset]=useState(0);
     const[principal,setPrincipal]=useState(0);
