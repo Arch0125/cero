@@ -15,6 +15,7 @@ import {
 import GetUSDC from '../hooks/GetUSDC';
 import GetUSDCVault from '../hooks/GetUSDCVault';
 import GetOracle from '../hooks/GetOracle';
+import GetLoanDetails from '../hooks/GetLoanDetails';
 
 const Maticborrow = () => {
 
@@ -29,11 +30,12 @@ const Maticborrow = () => {
     const usdc = GetUSDC();
     const usdcvault = GetUSDCVault();
     const oracle = GetOracle();
+    const loans= GetLoanDetails();
 
     const[matic,setMatic]=useState(0);
     const[borrow,setBorrow]=useState(0);
-    const[ratio,setRatio]=useState(0);
-    const[apr,setApr]=useState(0);
+    const[ratio,setRatio]=useState(50);
+    const[apr,setApr]=useState(0.45);
     const[coll,setColl]=useState(0);
     const[repay,setRepay]=useState(0);
     const[currentprice,setCurrentprice]=useState(0);
@@ -48,6 +50,15 @@ const Maticborrow = () => {
         var res = await oracle.estimateAmountOut('0xaa2ABC23B36E906cE603C6d19A88F0873A701b87',big,10);
         let x = new BigNumber(`${res}`).shiftedBy(-18).toFixed(5);
         setCurrentprice(x);
+    }
+
+    const createloan=async()=>{
+        var bigborrow = new BigNumber(borrow).shiftedBy(18).toString();
+        var bigvault = new BigNumber(1).toString();
+        console.log(Date.now() / 1000 | 0);
+        var bigdate = new BigNumber(Date.now() / 1000 | 0).toString();
+        var bigmatic = new BigNumber(matic).toString();
+        await loans.createLoan(bigborrow,1,apr,matic,Date.now() / 1000 | 0).then(console.log);
     }
 
     return ( 
@@ -83,7 +94,7 @@ const Maticborrow = () => {
                     <p className='font-thin'>{repay} USDC</p>
                 </div>
             </div>
-            <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>depositTo(coll)} >Confirm Transaction</Button>
+            <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>createloan()} >Confirm Transaction</Button>
             <Divider mt={3} />
             <label className= ' font-light text-gray-500 text-[15px] mt-2' ><InfoOutlineIcon w={3} mr={2} color={'gray.500'} />Lower the collateral, higher the APR</label>
         </div>

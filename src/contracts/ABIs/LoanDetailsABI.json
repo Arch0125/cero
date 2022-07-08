@@ -2,13 +2,82 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_token0",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_borrowamt",
+				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
+				"name": "_vaultid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_apr",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_lockedamt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_startdate",
+				"type": "uint256"
+			}
+		],
+		"name": "createLoan",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_vaultid",
+				"type": "uint256"
+			}
+		],
+		"name": "lockAsset",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_vaultid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_totaldate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_interest",
+				"type": "uint256"
+			}
+		],
+		"name": "repay",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
-				"name": "_token1",
+				"name": "_token",
 				"type": "address"
 			}
 		],
@@ -21,9 +90,14 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "balanceOf",
+		"name": "lockedassets",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -37,25 +111,55 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "deposit",
-		"outputs": [
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
 			{
 				"internalType": "uint256",
-				"name": "shares",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "nonpayable",
+		"name": "myloans",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "borrower",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "borrowamt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vaultid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "apr",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startdate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "status",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"inputs": [],
-		"name": "token0",
+		"name": "token",
 		"outputs": [
 			{
 				"internalType": "contract IERC20",
@@ -68,20 +172,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "token1",
-		"outputs": [
-			{
-				"internalType": "contract IERC20",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
+		"name": "totalamt",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -90,38 +181,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "unlock",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_shares",
-				"type": "uint256"
-			}
-		],
-		"name": "withdraw",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
