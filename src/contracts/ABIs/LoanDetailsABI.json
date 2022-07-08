@@ -36,24 +36,6 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_vaultid",
-				"type": "uint256"
-			}
-		],
-		"name": "lockAsset",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "_vaultid",
 				"type": "uint256"
 			},
@@ -83,6 +65,76 @@
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_vaultid",
+				"type": "uint256"
+			}
+		],
+		"name": "getLoan",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "borrower",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "borrowamt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vaultid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "apr",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "startdate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "status",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct LoanDetails.Loan",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_vaultid",
+				"type": "uint256"
+			}
+		],
+		"name": "getLockedAsset",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"inputs": [
