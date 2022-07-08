@@ -55,10 +55,10 @@ const Maticborrow = () => {
     const createloan=async()=>{
         var bigborrow = new BigNumber(borrow).shiftedBy(18).toString();
         var bigvault = new BigNumber(1).toString();
-        console.log(Date.now() / 1000 | 0);
+        console.log(apr);
         var bigdate = new BigNumber(Date.now() / 1000 | 0).toString();
         var bigmatic = new BigNumber(matic).toString();
-        await loans.createLoan(bigborrow,1,apr,matic,Date.now() / 1000 | 0).then(console.log);
+        await loans.createLoan(bigborrow,1,apr.toString(),matic,Date.now() / 1000 | 0).then(console.log);
     }
 
     return ( 

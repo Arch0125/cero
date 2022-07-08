@@ -25,6 +25,13 @@ import GetLoanDetails from '../hooks/GetLoanDetails';
         setLockedasset(asset);
         var borrowamt = new BigNumber(`${data.borrowamt}`).shiftedBy(-18).toString().slice(0,6);
         setPrincipal(borrowamt)
+        console.log(data.apr);
+        var startdate = new BigNumber(`${data.startdate}`).toNumber();
+        var dur = ((Date.now() / 1000 | 0)- startdate)/86400;
+        dur = dur.toString().slice(0,6);
+        setDuration(dur);
+        setInterest(data.apr)
+        
     }
 
     return ( 
@@ -36,8 +43,8 @@ import GetLoanDetails from '../hooks/GetLoanDetails';
                 <label>Principal : {principal} MATIC</label>
             </div>
             <div className='flex flex-row mt-3 justify-between' >
-                <label>Interest : </label>
-                <label>Duration : </label>
+                <label>Interest : {interest}%pa</label>
+                <label>Duration : {duration} days</label>
             </div>
             <Divider/>
             <Button variant={"solid"} colorScheme={'purple'} mt={'3'} bgColor={"#050229"} >Repay and Unlock MATIC</Button>
