@@ -25,6 +25,7 @@ const Maticborrow = () => {
         setColl(borrow*ratio/100);
         setRepay(borrow-coll);
         getOracle();
+        checkLoan();
     })
 
     const usdc = GetUSDC();
@@ -39,10 +40,20 @@ const Maticborrow = () => {
     const[coll,setColl]=useState(0);
     const[repay,setRepay]=useState(0);
     const[currentprice,setCurrentprice]=useState(0);
+    const[loan,setLoan]=useState(true);
 
     const depositTo=async(deposit)=>{
         await usdc.approve('0x3F84668d2AF41D150546f5cd5bd3f8f1DE88669E',(100*decimals).toString())
         await usdcvault.deposit((deposit*decimals).toString()).then(console.log);
+    }
+
+    const checkLoan=async()=>{
+        var data = await loans.getLoan(1);
+        if((data.status === true)||(data.apr === '')){
+            setLoan(true);
+        }else{
+            setLoan(false);
+        }
     }
 
     const getOracle=async()=>{
@@ -94,7 +105,11 @@ const Maticborrow = () => {
                     <p className='font-thin'>{repay} USDC</p>
                 </div>
             </div>
-            <Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>createloan()} >Confirm Transaction</Button>
+            {
+                (loan === true)?<Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>createloan()} >Confirm Transaction</Button>
+                :<Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'}>Repay before taking another loan</Button>
+
+            }
             <Divider mt={3} />
             <label className= ' font-light text-gray-500 text-[15px] mt-2' ><InfoOutlineIcon w={3} mr={2} color={'gray.500'} />Lower the collateral, higher the APR</label>
         </div>
