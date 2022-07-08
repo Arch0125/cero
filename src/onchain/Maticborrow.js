@@ -106,8 +106,8 @@ const Maticborrow = () => {
                 </div>
             </div>
             {
-                (loan === true)?<Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>createloan()} >Confirm Transaction</Button>
-                :<Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'}>Repay before taking another loan</Button>
+                (loan === true)?<Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} onClick={()=>createloan()} className='hover:bg-purple-800'>Confirm Transaction</Button>
+                :<Button mt={5} variant={'solid'} bgColor={'purple.900'} textColor={'white'} className='hover:bg-purple-800' >Repay before taking another loan</Button>
 
             }
             <Divider mt={3} />
